@@ -4,7 +4,16 @@ document.querySelectorAll('button').forEach((button) => {
 
 const screen = document.querySelector('#screen')
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve,ms))
+}
+
+let opp;
+
 function calculator(event) {
+    if (opp == true) {
+        screen.innerText = ''
+    }
     opp = false
     const value = event.target.innerText
     if (value == 'AC') {
@@ -14,19 +23,21 @@ function calculator(event) {
             result = Function("return " + screen.innerText)();
             roundedResult = Math.round(result * 10**9) / 10**9
             screen.innerText = roundedResult
-            opp = true
         }
         catch(err) {
             screen.innerText = 'Syntax error'
+            opp = true
         }
     } else if (value == 'STR') {
         try {
             screen.innerText = Function("return " + screen.innerText)();
             store = screen.innerText
             screen.innerText += ' (stored)'
+            opp = true
         }
         catch(err) {
             screen.innerText = 'Store error'
+            opp = true
         }
     } else if (value == 'VAR') {
         screen.innerText += store;
