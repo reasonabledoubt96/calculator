@@ -3,11 +3,6 @@ document.querySelectorAll('button').forEach((button) => {
   });
 
 const screen = document.querySelector('#screen')
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve,ms))
-}
-
 let opp;
 
 function calculator(event) {
@@ -21,7 +16,7 @@ function calculator(event) {
     } else if (value == '=') {
         try {
             result = Function("return " + screen.innerText)();
-            roundedResult = Math.round(result * 10**9) / 10**9
+            roundedResult = Math.round(result * 10**8) / 10**8
             screen.innerText = roundedResult
         }
         catch(err) {
@@ -30,9 +25,11 @@ function calculator(event) {
         }
     } else if (value == 'STR') {
         try {
-            screen.innerText = Function("return " + screen.innerText)();
-            store = screen.innerText
-            screen.innerText += ' (stored)'
+            if (typeof Function("return " + screen.innerText)() == 'number') {
+                screen.innerText = Math.round((Function("return " + screen.innerText)()) * 10**5) / 10**5
+                store = screen.innerText
+                screen.innerText += ' (stored)'
+            }
             opp = true
         }
         catch(err) {
