@@ -3,7 +3,7 @@
 
 .calculator {
     width: 500px;
-    height: 600px;
+    height: 650px;
     border: 2px solid black;
     background-color: rgb(170, 162, 162);
     border-radius: 12px;
@@ -41,7 +41,7 @@ button {
 .buttons {
     margin: auto;
     text-align: center;
-    width: 500px;
+    width: 490px;
 }
 
 h2 {

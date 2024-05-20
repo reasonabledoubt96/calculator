@@ -37,11 +37,15 @@ function calculator(event) {
             opp = true
         }
     } else if (value == 'VAR') {
-        screen.innerText += store;
+        if (screen.innerText.length < 20) {
+            screen.innerText += store;
+        }
     } else if (value == 'DEL') {
         storedText = screen.innerText
         screen.innerText = storedText.substring(0,storedText.length - 1)
     } else {
-        screen.innerText += value
+        if (screen.innerText.length < 20) {
+            screen.innerText += value
+        }
     }
 };
